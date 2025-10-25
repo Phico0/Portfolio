@@ -62,4 +62,28 @@
   </div>
 
   <script>
-    const iframe = document.getEleme
+    const iframe = document.getElementById("figma-frame");
+    const prevBtn = document.getElementById("prev");
+    const nextBtn = document.getElementById("next");
+
+    // Para protótipos do Figma: navegação por teclado ou botões
+    document.addEventListener("keydown", (e) => {
+      if(e.key === "ArrowLeft") {
+        iframe.contentWindow.postMessage({ pluginMessage: { type: 'PREV_FRAME' }}, '*');
+      }
+      if(e.key === "ArrowRight") {
+        iframe.contentWindow.postMessage({ pluginMessage: { type: 'NEXT_FRAME' }}, '*');
+      }
+    });
+
+    prevBtn.addEventListener("click", () => {
+      iframe.contentWindow.postMessage({ pluginMessage: { type: 'PREV_FRAME' }}, '*');
+    });
+
+    nextBtn.addEventListener("click", () => {
+      iframe.contentWindow.postMessage({ pluginMessage: { type: 'NEXT_FRAME' }}, '*');
+    });
+  </script>
+
+</body>
+</html>
